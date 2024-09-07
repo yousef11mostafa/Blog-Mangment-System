@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RegisterEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -28,8 +29,12 @@ class AuthController extends Controller
         ]);
 
         //alter code
-        $user->assignRole('user');
+        // $user->assignRole('user');
         //end
+
+        // call the event
+           RegisterEvent::dispatch($user);
+        //
 
         $token = JWTAuth::fromUser($user);
         $cookie = $this->getCookieToken($token);

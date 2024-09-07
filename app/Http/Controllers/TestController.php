@@ -13,11 +13,13 @@ class TestController extends Controller
 
     public function index(){
 
-        // $user=User::find(41);
+        // $user=User::find(45);
+
+
         // $user->assignRole('admin');
         // return $user->getAllPermissions();
 
         // return User::find(1)->getAllPermissions();
-        // return User::find(1)->roles;
+        return User::find(48)->roles;
     }
 }

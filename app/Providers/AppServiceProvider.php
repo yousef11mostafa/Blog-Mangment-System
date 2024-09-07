@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\RegisterEvent;
+use App\Listeners\SendWelcomeToRegisterdUser;
 use Illuminate\Support\ServiceProvider;
 use App\Policies\PostPolicy;
 use App\Policies\CommentPolicy;
@@ -19,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+
+
+    protected $listen =[
+        RegisterEvent::class=>[
+             SendWelcomeToRegisterdUser::class,
+        ]
+    ];
+
     /**
      * Bootstrap any application services.
      */
@@ -27,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Gate::policy(Post::class, PostPolicy::class);
         Gate::policy(Comment::class, CommentPolicy::class);
+
 
 
     }
